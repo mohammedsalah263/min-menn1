@@ -8,7 +8,8 @@ namespace min
         {
             List<int> number = new List<int>();
            
-           
+           do
+           {
                 Console.WriteLine("Hello, min menn .");
                 Console.WriteLine("P_ print numbers :");
                 Console.WriteLine("A- add a numbers :");
@@ -110,7 +111,7 @@ namespace min
                     default: Console.WriteLine("unknown selection , pleas try agin .");
                     break;
             }
-           
+           } while;
            
 
 
