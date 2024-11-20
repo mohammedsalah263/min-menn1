@@ -2,119 +2,117 @@
 
 namespace min
 {
-    internal class Program
+
+     internal class Program
     {
+        static char ReadInput()
+        {
+            char selection = '\0';
+            Console.Write("Enter your selection: ");
+            selection = char.Parse(Console.ReadLine().ToLower());
+
+            return selection;
+        }
+
+        static void DisplayMenu()
+        {
+            Console.WriteLine("\n---------------------");
+            Console.WriteLine("P - Print numbers");
+            Console.WriteLine("A - Add a number");
+            Console.WriteLine("M - Display mean of the numbers");
+            Console.WriteLine("S - Display the smallest number");
+            Console.WriteLine("L - Display the largest number");
+            Console.WriteLine("F - Search By Number To Find Index");
+            Console.WriteLine("C - To Clear A List");
+            Console.WriteLine("Q - Quit");
+            Console.WriteLine("\n---------------------");
+        }
+
+        static void PrintList(List<int> list)
+        {
+            Console.Write("[ ");
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.Write(list[i] + " ");
+            }
+            Console.WriteLine("]");
+        }
+
         static void Main(string[] args)
         {
-            List<int> number = new List<int>();
-           
-           do
-           {
-                Console.WriteLine("Hello, min menn .");
-                Console.WriteLine("P_ print numbers :");
-                Console.WriteLine("A- add a numbers :");
-                Console.WriteLine("M- display mean of the numbers :");
-                Console.WriteLine("S_ display the  smallest numbers :");
-                Console.WriteLine("L- display the largest numbers :");
-                Console.WriteLine("Q- Quit .");
-                Console.WriteLine("enter your choice :");
-              ///////
-              char num1=Convert.ToChar(Console.ReadLine().ToUpper());
-                switch (num1)
-                /////
-                { 
-                case  'P':
-                            if(number.Count == 0 ) 
+            List<int> list = new List<int>() { 1, 2, 3 };
+            do
+            {
+                DisplayMenu();
+                char selection = ReadInput();
+
+                switch (selection)
+                {
+                    case 'p':
+                        if(list.Count == 0)
                         {
-                            Console.WriteLine("[");
-                            Console.WriteLine(string.Join("", number));
-                            Console.WriteLine("]");
-
-
+                            Console.WriteLine("[]");
                         }
                         else
                         {
-                            Console.WriteLine("[] the list is empty ...");
-
+                            PrintList(list);
                         }
-                            break;
-                //////    
-                case 'A':
-                    Console.WriteLine("Enter an integer to add the list : ");
+                        break;
+                    case 'a':
+                        Console.Write("Enter value: ");
 
+                        int value = int.Parse(Console.ReadLine());
+                        bool isFound = false;
+                        for (global::System.Int32 i = 0; i < list.Count; i++)
+                        {
+                            if(list[i] == value)
+                            {
+                                isFound = true;
+                                break;
+                            }
+                        }
+                        if(!isFound)
+                        {
+                            list.Add(value);
+                            Console.WriteLine($"{value} added");
+                        }
+                        break;
+                    case 'm':
+                        break;
+                    case 's':
 
-                    if (number.Count != 77777777)
-                    {
-                        Console.WriteLine($"  {number} added ");
-                    }
-                    else
-                    {
-                    Console.WriteLine(" in valed input .");
-                    }
-                    break;
-                        ////
-                    case 'M':
+                        int smallest = list[0];
+                        for (global::System.Int32 i = 0; i < list.Count; i++)
+                        {
+                            if (list[i] < smallest)
+                            {
+                                smallest = list[i];
+                            }
+                        }
+                        Console.WriteLine($"smallest: {smallest}");
 
-                    if( number.Count == 0)
-                    {
-                        Console.WriteLine("unable to calculate the mean :");
-                    }
-                    else
-                    {
-                        double total, sum, count;
-                        sum= number.Sum();
-                        count= number.Count();
-                        total=sum/count;
-                        Console.WriteLine("the mean of :" + total);
-                    }
-                    break;
-                //////
-                case 'S':
+                        break;
+                    case 'l':
+                        Console.WriteLine("l");
+                        break;
+                    case 'f':
+                        Console.WriteLine("f");
+                        break;
+                    case 'c':
+                        Console.WriteLine("c");
+                        break;
+                    case 'q':
+                        Console.WriteLine("q");
+                        Console.WriteLine("good bye");
+                        break;
+                    default:
+                        Console.WriteLine("another");
+                        break;
 
-                    Console.WriteLine(" the smallest numbers :");
-                    
-                    if (number.Count == 0)
-                    {
-                        Console.WriteLine("");
-                    }
-                    else  
-                    { 
-                    int smallest=number.Min();
-                        Console.WriteLine("display the  smallest numbers" + smallest);
-                    }
-                    break;
+                }
 
-
-
-                case 'L':
-
-                    Console.WriteLine("the large numbers");
-
-                    if (number.Count == 0)
-                    {
-                        Console.WriteLine("");
-                    }
-                    else
-                    {
-                        int larglest = number.Max();
-                        Console.WriteLine("display the  large numbers" + larglest);
-                    }
-                    break;
-                //////
-               
-                case 'Q':   
-                    
-                    Console.WriteLine("good bay");
-                    break;
-
-
-                    default: Console.WriteLine("unknown selection , pleas try agin .");
-                    break;
-            }
-           } while;
-           
-
-
+            } while (true);
         }
     }
+    
 }
